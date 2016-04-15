@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Test : MonoBehaviour {
 
-<<<<<<< HEAD
+    // Kommentare sind für Pussys
+
     private int fotz;
 
 
@@ -18,5 +19,7 @@ public class Test : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Debug.Log("uwe");
+
+        bool sack = false;
 	}
 }
