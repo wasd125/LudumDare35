@@ -12,7 +12,7 @@ public class Test : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-
+		Debug.Log("Rieme");
 	}
 	
 	// Update is called once per frame
