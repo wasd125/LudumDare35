@@ -11,6 +11,8 @@ public class CameraFollower : MonoBehaviour {
 
     public Transform targetToFollow;
 
+    public float xOffset { get; private set; }
+
     // Use this for initialization
     void Start () {
         // First we check if there are any other instances conflicting
@@ -33,7 +35,7 @@ public class CameraFollower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float xOffset = myCam.transform.position.x - targetToFollow.position.x;
+        xOffset = myCam.transform.position.x - targetToFollow.position.x;
 
         if (Mathf.Abs(xOffset) > 0)
         {
