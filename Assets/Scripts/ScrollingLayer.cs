@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class ScrollingLayer : MonoBehaviour {
+	
+	public string LayerName ; 
 
-    public Sprite mySprite;
-
-    public float Multiplier { get; private set; }
+    public float Multiplier ; 
 
     public Vector3 MoveTowardsPos { get; private set; }
 
