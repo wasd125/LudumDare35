@@ -4,29 +4,17 @@ using System.Collections;
 public class ScrollingLayerController : MonoBehaviour {
 
 
-	public static ScrollingLayerController Instance;
-
 	[SerializeField]
 	public ScrollingLayer[] layers;
 
 	private Camera myCam;
-	private Vector3 lastFramePosition;
 	private float lastFrameX;
 
 	void Start () {
-		if (Instance == null)
-		{
-			DontDestroyOnLoad(gameObject);
-			Instance = this;
-		}
-		else if (Instance != this)
-		{
-			Destroy(gameObject);
-			return;
-		}
+
 
 		myCam = Camera.main;
-		lastFramePosition = transform.position;
+		lastFrameX = myCam.transform.position.x;
 
 	}
 	
@@ -41,9 +29,6 @@ public class ScrollingLayerController : MonoBehaviour {
 			item.MoveToPosition (offsetX);
 			
 		}
-
-
-		lastFramePosition = transform.position;
 		lastFrameX = currentFrameX;
 	}
 }

@@ -11,9 +11,9 @@ public class ScrollingLayer : MonoBehaviour {
 
     public Vector3 MoveTowardsPos { get; private set; }
 
-    public void InitLayer(float multiplier)
+    void Start()
     {
-        Multiplier = multiplier;
+		MoveTowardsPos = transform.position;
     }
 
     public void MoveToPosition(float distance)
