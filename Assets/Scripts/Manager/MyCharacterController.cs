@@ -6,6 +6,8 @@ public class MyCharacterController : MonoBehaviour {
 	[HideInInspector]
     public Rigidbody2D rb2d { get; private set; }
     
+    public BoxCollider2D bc2d { get; private set; }
+
     public bool grounded { get; private set; }
 
     public float Speed { get; private set; }
@@ -17,18 +19,21 @@ public class MyCharacterController : MonoBehaviour {
     public Transform GroundCheck1; // Put the prefab of the ground here
     public LayerMask groundLayer; // Insert the layer here.
 
+    public CharacterAttributeController AttributController { get; set; }
+
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
+        bc2d = GetComponent<BoxCollider2D>();
         Speed = 700f;
         jumpForce = 15f;
+        //AttributController(Energybar)
     }
 
 	// Update is called once per frame
 	void Update ()
     {
-        GroundCheck();
         HandleInput();
         Delays();
 	}
@@ -51,7 +56,12 @@ public class MyCharacterController : MonoBehaviour {
 
     bool GroundCheck()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 1 + 0.1f);
+        //Debug.Log(transform.position + " " + -Vector3.up + " " + "3 + 0.1f" + " " + Physics.Raycast(transform.position, -Vector3.up, 3 + 0.1f));
+        
+
+        Debug.Log(transform.position.y + " " + (bc2d.size.y / 2));
+
+        return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.size.y / 2) + 0.1f,groundLayer);
     }
 // 
     void Move()
@@ -99,7 +109,7 @@ public class MyCharacterController : MonoBehaviour {
     void Jump()
     {
 
-        if (jumpDelay <= 0)
+        if (jumpDelay <= 0 && GroundCheck())
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             jumpDelay = MaxJumpDelay;
@@ -109,8 +119,12 @@ public class MyCharacterController : MonoBehaviour {
 
     void ChangeSpeed(float pitch)
     {
-        SoundManager.Instance.PitchMusik(pitch);
-        PulseManagerHardCoded.Instance.SetPitch(pitch);
+
+        if (AttributController.CurrentEnergy > 0)
+        {
+            SoundManager.Instance.PitchMusik(pitch);
+            PulseManagerHardCoded.Instance.SetPitch(pitch);
+        }
     }
 
     void OnCollisionStay2D(Collision2D other)
