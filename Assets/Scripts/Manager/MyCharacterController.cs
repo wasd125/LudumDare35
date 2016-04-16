@@ -102,4 +102,12 @@ void Start()
         SoundManager.Instance.PitchMusik(pitch);
         PulseManagerHardCoded.Instance.SetPitch(pitch);
     }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "DamageSource")
+        {
+            LevelController.Instance.PlayerDied();
+        }
+    }
 }
