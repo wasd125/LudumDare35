@@ -11,8 +11,6 @@ public class MenuItemController : MonoBehaviour {
     private const int START_LEVEL_ID = 1;
     private const float BUTTON_PADDING = 15f;
 
-    private float verticalTriggerInput = 0;
-
     public int SelectedIndex { get; private set; }
 
     public AudioClip MoveSelectionClip, SelectClip, MusikClip;

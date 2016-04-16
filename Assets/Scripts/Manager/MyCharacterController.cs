@@ -56,11 +56,6 @@ public class MyCharacterController : MonoBehaviour {
 
     bool GroundCheck()
     {
-        //Debug.Log(transform.position + " " + -Vector3.up + " " + "3 + 0.1f" + " " + Physics.Raycast(transform.position, -Vector3.up, 3 + 0.1f));
-        
-
-        Debug.Log(transform.position.y + " " + (bc2d.size.y / 2));
-
         return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.size.y / 2) + 0.1f,groundLayer);
     }
 // 
