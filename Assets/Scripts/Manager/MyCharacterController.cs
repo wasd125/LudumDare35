@@ -13,7 +13,11 @@ public class MyCharacterController : MonoBehaviour {
     public float jumpForce { get; private set; }
     public const float MaxJumpDelay = 0.3f;
 
-void Start()
+    bool isGrounded = false;
+    public Transform GroundCheck1; // Put the prefab of the ground here
+    public LayerMask groundLayer; // Insert the layer here.
+
+    void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
@@ -24,6 +28,7 @@ void Start()
 	// Update is called once per frame
 	void Update ()
     {
+        GroundCheck();
         HandleInput();
         Delays();
 	}
@@ -43,6 +48,11 @@ void Start()
         }
     }
 
+
+    bool GroundCheck()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 1 + 0.1f);
+    }
 // 
     void Move()
     {
