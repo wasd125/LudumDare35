@@ -6,7 +6,7 @@ public class MyCharacterController : MonoBehaviour {
 	[HideInInspector]
     public Rigidbody2D rb2d { get; private set; }
     
-    public BoxCollider2D bc2d { get; private set; }
+    public CircleCollider2D bc2d { get; private set; }
 
     public bool grounded { get; private set; }
 
@@ -25,7 +25,7 @@ public class MyCharacterController : MonoBehaviour {
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
-        bc2d = GetComponent<BoxCollider2D>();
+        bc2d = GetComponent<CircleCollider2D>();
         Speed = 700f;
         jumpForce = 15f;
         //AttributController(Energybar)
@@ -56,7 +56,7 @@ public class MyCharacterController : MonoBehaviour {
 
     bool GroundCheck()
     {
-        return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.size.y / 2) + 0.1f,groundLayer);
+        return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.radius) + 0.1f,groundLayer);
     }
 // 
     void Move()
