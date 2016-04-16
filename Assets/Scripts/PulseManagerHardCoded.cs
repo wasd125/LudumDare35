@@ -12,8 +12,6 @@ public class PulseManagerHardCoded : MonoBehaviour {
 
     float pitchMultiplier = 1;
 
-    Color[] colors = new Color[] { Color.black, Color.blue, Color.green, Color.white,Color.red,Color.yellow,Color.gray };
-
     public Action Pulse;
 
     void Awake()
