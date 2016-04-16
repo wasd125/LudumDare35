@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CameraFollower : MonoBehaviour {
 
+    public static CameraFollower Instance;
+
     private Camera myCam;
 
     private Vector3 lastFramePosition;
@@ -11,6 +13,19 @@ public class CameraFollower : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        // First we check if there are any other instances conflicting
+        if (Instance == null)
+        {
+            // If that is the case, we destroy other instances
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         myCam = Camera.main;
         lastFramePosition = transform.position;
     }
