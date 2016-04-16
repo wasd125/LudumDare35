@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
     public Rigidbody2D rb2d { get; private set; }
     private IEnemyBehaviour myBehaviour;
 
-    public enum EnumEnemyType { JumpingEnemy }
+    public enum EnumEnemyType { JumpingEnemy,WalkingEnemy }
     public EnumEnemyType EnemyType;
 
     public float jumpForce;
@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour {
         {
             case EnumEnemyType.JumpingEnemy:
                 myBehaviour = new JumpingEnemyBehaviour();
+                break;
+            case EnumEnemyType.WalkingEnemy:
+                myBehaviour = new WalkingEnemy();
                 break;
         }
 
