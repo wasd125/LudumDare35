@@ -7,7 +7,7 @@ public class PulseManagerHardCoded : MonoBehaviour {
     public AudioClip clip;
     public SpriteRenderer rend;
 
-    const float MAX_PULSE_TIMER = 0.5f;
+    const float MAX_PULSE_TIMER = 0.481f;
     float currentPulseTimer = 0f;
 
     Color[] colors = new Color[] { Color.black, Color.blue, Color.green, Color.white,Color.red,Color.yellow,Color.gray };

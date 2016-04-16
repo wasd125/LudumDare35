@@ -6,18 +6,26 @@ public class MyCharacterController : MonoBehaviour {
 	[HideInInspector]
     public Rigidbody2D rb2d { get; private set; }
     
-    public float Speed { get; private set; }
+    public bool grounded { get; private set; }
 
-    void Start()
+    public float Speed { get; private set; }
+    public float jumpDelay { get; private set; }
+    public float jumpForce { get; private set; }
+    public const float MaxJumpDelay = 0.3f;
+
+void Start()
     {
+        InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
-        Speed = 200f;
+        Speed = 400f;
+        jumpForce = 12f;
     }
 
 	// Update is called once per frame
 	void Update ()
     {
-        HandleInput();   
+        HandleInput();
+        Delays();
 	}
 
     void HandleInput()
@@ -29,9 +37,9 @@ public class MyCharacterController : MonoBehaviour {
             Actions();
         }
         // Wenn die Steuerung nicht zugelassen ist aber wir dennoch Velocity haben setzen wir diese auf Vector2.Zero
-        else if(rb2d.velocity != Vector2.zero)
+        else if(rb2d.velocity.x != 0)
         {
-        	rb2d.velocity = Vector2.zero;
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
     }
 
@@ -40,17 +48,23 @@ public class MyCharacterController : MonoBehaviour {
     {
         Vector2 velocity = new Vector2();
 		
-        velocity.x = InputManager.Instance.Horizontal;
-        velocity.y = InputManager.Instance.Vertical;
+        velocity.x = InputManager.Instance.Horizontal * Speed * Time.deltaTime;
+        velocity.y = rb2d.velocity.y;
 
-        rb2d.velocity = velocity.normalized * Speed * Time.deltaTime;
+        rb2d.velocity = velocity;
+    }
+
+    void Delays()
+    {
+        if (jumpDelay > 0)
+            jumpDelay -= Time.deltaTime;
     }
 
     void Actions()
     {
         if (InputManager.Instance.Trigger_Action_One)
         {
-            Debug.Log("Action_One");
+            Jump();
         }
         if (InputManager.Instance.Trigger_Action_Two)
         {
@@ -64,5 +78,16 @@ public class MyCharacterController : MonoBehaviour {
         {
             Debug.Log("Action_Four");
         }
+    }
+
+    void Jump()
+    {
+
+        if (jumpDelay <= 0)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            jumpDelay = MaxJumpDelay;
+        }
+        
     }
 }
