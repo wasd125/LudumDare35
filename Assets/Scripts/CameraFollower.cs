@@ -28,11 +28,11 @@ public class CameraFollower : MonoBehaviour {
             float followSpeed = 2f;
 
 
-            if (Mathf.Abs(xOffset) > 5f)
+            if (Mathf.Abs(xOffset) > 3.5f)
             {
                 followSpeed = 8f;
             }
-            else if (Mathf.Abs(xOffset) > 3f)
+            else if (Mathf.Abs(xOffset) > 2f)
             {
                 followSpeed = 4f;
             }

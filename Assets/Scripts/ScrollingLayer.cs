@@ -14,10 +14,15 @@ public class ScrollingLayer : MonoBehaviour {
     void Start()
     {
 		MoveTowardsPos = transform.position;
+
+        if (Multiplier > 1)
+            Multiplier *= -1;
     }
 
     public void MoveToPosition(float distance)
     {
+
+
         MoveTowardsPos = new Vector3(transform.position.x + (distance * Multiplier), transform.position.y, transform.position.z);
     }
 

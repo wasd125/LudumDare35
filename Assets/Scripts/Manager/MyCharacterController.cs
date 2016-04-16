@@ -17,8 +17,8 @@ void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
-        Speed = 400f;
-        jumpForce = 12f;
+        Speed = 700f;
+        jumpForce = 15f;
     }
 
 	// Update is called once per frame

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class LevelController : MonoBehaviour {
 
     public static LevelController Instance;
-
+    public AudioClip clip;
     public List<PulsingObject> PulseObjects { get; private set; }
 
     void Awake()
@@ -25,6 +25,8 @@ public class LevelController : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+
+        SoundManager.Instance.PlayMusik(clip);
     }
 
     public void ResgisterPulsingObject(PulsingObject obj)
@@ -42,6 +44,7 @@ public class LevelController : MonoBehaviour {
     {
         UnregisterAllPulsingObjects();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SoundManager.Instance.PlayMusik(clip);
     }
 
     public void UnregisterAllPulsingObjects()

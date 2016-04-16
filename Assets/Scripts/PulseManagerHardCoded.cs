@@ -5,7 +5,6 @@ using System;
 public class PulseManagerHardCoded : MonoBehaviour {
 
     public static PulseManagerHardCoded Instance;
-    public AudioClip clip;
 
     float BASE_PULSE_TIMER = 0.481f;
     float max_Pulse_Timer;
@@ -31,11 +30,6 @@ public class PulseManagerHardCoded : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-    }
-
-    void Start()
-    {
-        SoundManager.Instance.PlayMusik(clip);
     }
 
     public void SetPitch(float pitch)

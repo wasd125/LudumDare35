@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: efbe115d190b7804db0dfd79d74675b1
-timeCreated: 1460800472
+guid: 65197205438ebc54497aa421c86244bf
+timeCreated: 1460810662
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kreis
-    21300002: Viereck
-    21300004: Dreieck
+    21300000: BasicEnemys_0
+    21300002: BasicEnemys_1
+    21300004: BasicEnemys_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +53,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Kreis
+    - name: BasicEnemys_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,7 +61,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -13, y: 16}
@@ -72,7 +72,7 @@ TextureImporter:
         - {x: 16, y: -14}
         - {x: 16, y: 14}
         - {x: 13, y: 16}
-    - name: Viereck
+    - name: BasicEnemys_1
       rect:
         serializedVersion: 2
         x: 32
@@ -80,14 +80,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -16, y: 16}
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
-    - name: Dreieck
+    - name: BasicEnemys_2
       rect:
         serializedVersion: 2
         x: 64
@@ -95,7 +95,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -3, y: 16}
