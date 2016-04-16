@@ -35,6 +35,9 @@ public class PulseManagerHardCoded : MonoBehaviour {
         pitchMultiplier = 2 - pitch;
 
         currentPulseTimer = currentPulseTimer * pitchMultiplier;
+
+        if (currentPulseTimer > BASE_PULSE_TIMER * pitchMultiplier)
+            currentPulseTimer = BASE_PULSE_TIMER * pitchMultiplier;
     }
 
     public float GetPitch()

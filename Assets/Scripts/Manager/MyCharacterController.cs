@@ -110,11 +110,11 @@ public class MyCharacterController : MonoBehaviour {
 
         if (InputManager.Instance.Trigger_Action_Three)
         {
-            ChangeSpeed(1.25f);
+            ChangeSpeed(1.5f);
         }
         else if (InputManager.Instance.Trigger_Action_Four)
         {
-            ChangeSpeed(0.75f);
+            ChangeSpeed(0.35f);
         }
         if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up  || AttributeController.CurrentEnergy <=0)
         {
@@ -142,7 +142,7 @@ public class MyCharacterController : MonoBehaviour {
             SoundManager.Instance.PitchMusik(pitch);
             PulseManagerHardCoded.Instance.SetPitch(pitch);
 
-            energyConsumption = 20 * Time.deltaTime;
+            energyConsumption = 15 * Time.deltaTime;
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PulsingObject : MonoBehaviour {
 
-    public enum EnumPulsingObjectType { SwitchType,JustPulse }
+    public enum EnumPulsingObjectType { SwitchType,JustPulse,JustSwitch }
     public EnumPulsingObjectType Type;
 
     public enum EnumPulsingStates { KreisSolid,DreieckSolid,ViereckSolid,KreisUnsoild,DreieckUnsolid,ViereckUnsolid }
@@ -31,7 +31,8 @@ public class PulsingObject : MonoBehaviour {
 
     void Pulse()
     {
-        anim.SetTrigger("Pulse");
+        if(Type !=  EnumPulsingObjectType.JustSwitch)
+            anim.SetTrigger("Pulse");
 
         if (Type == EnumPulsingObjectType.JustPulse)
             return;
