@@ -76,6 +76,9 @@ public class InputManager : MonoBehaviour {
     public bool Trigger_Action_Three { get; private set; }
     public bool Trigger_Action_Four { get; private set; }
 
+    public bool Trigger_Action_Three_Up { get; private set; }
+    public bool Trigger_Action_Four_Up { get; private set; }
+
     public bool Trigger_Action_Start { get; private set; }
 
     public bool Action_One { get; private set; }
@@ -150,6 +153,8 @@ public class InputManager : MonoBehaviour {
         if (Trigger_Action_Three) Trigger_Action_Three = false;
         if (Trigger_Action_Four) Trigger_Action_Four = false;
         if (Trigger_Action_Start) Trigger_Action_Start = false;
+        if (Trigger_Action_Three_Up) Trigger_Action_Three_Up = false;
+        if (Trigger_Action_Four_Up) Trigger_Action_Four_Up = false;
 
         if (Input.GetButtonDown(Inputs.ActionOne) || Input.GetButtonDown(Inputs.ActionOne_K))
         {
@@ -157,7 +162,7 @@ public class InputManager : MonoBehaviour {
             Trigger_Action_One = true;
         }
         else if (Action_One && 
-            (Input.GetButton(Inputs.ActionOne) == false || Input.GetButton(Inputs.ActionOne_K) == false))
+            (Input.GetButton(Inputs.ActionOne) == false && Input.GetButton(Inputs.ActionOne_K) == false))
         {
             Action_One = false;
         }
@@ -168,7 +173,7 @@ public class InputManager : MonoBehaviour {
             Trigger_Action_Two = true;
         }
         else if (Action_Two &&
-            (Input.GetButton(Inputs.ActionTwo) == false || Input.GetButton(Inputs.ActionTwo_K) == false))
+            (Input.GetButton(Inputs.ActionTwo) == false && Input.GetButton(Inputs.ActionTwo_K) == false))
         {
             Action_Two = false;
         }
@@ -179,7 +184,7 @@ public class InputManager : MonoBehaviour {
             Trigger_Action_Three = true;
         }
         else if (Action_Three &&
-            (Input.GetButton(Inputs.ActionThree) == false || Input.GetButton(Inputs.ActionThree_K) == false))
+            (Input.GetButton(Inputs.ActionThree) == false && Input.GetButton(Inputs.ActionThree_K) == false))
         {
             Action_Three = false;
         }
@@ -190,7 +195,7 @@ public class InputManager : MonoBehaviour {
             Trigger_Action_Four = true;
         }
         else if (Action_Four &&
-            (Input.GetButton(Inputs.ActionFour) == false || Input.GetButton(Inputs.ActionFour_K) == false))
+            (Input.GetButton(Inputs.ActionFour) == false && Input.GetButton(Inputs.ActionFour_K) == false))
         {
             Action_Four = false;
         }
@@ -201,9 +206,21 @@ public class InputManager : MonoBehaviour {
             Trigger_Action_Start = true;
         }
         else if (Action_Start &&
-            (Input.GetButton(Inputs.Action_Start) == false || Input.GetButton(Inputs.Action_Start_K) == false))
+            (Input.GetButton(Inputs.Action_Start) == false && Input.GetButton(Inputs.Action_Start_K) == false))
         {
             Action_Start = false;
+        }
+
+        // Trigger Ups
+
+        if (Input.GetButtonUp(Inputs.ActionThree) || Input.GetButtonUp(Inputs.ActionThree_K))
+        {
+            Trigger_Action_Three_Up = true;
+        }
+
+        if (Input.GetButtonUp(Inputs.ActionFour) || Input.GetButtonUp(Inputs.ActionFour_K))
+        {
+            Trigger_Action_Four_Up = true;
         }
     }
 

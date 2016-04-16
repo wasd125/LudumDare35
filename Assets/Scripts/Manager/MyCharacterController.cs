@@ -70,13 +70,19 @@ void Start()
         {
             Debug.Log("Action_Two");
         }
+
         if (InputManager.Instance.Trigger_Action_Three)
         {
-            Debug.Log("Action_Three");
+            ChangeSpeed(1.25f);
         }
-        if (InputManager.Instance.Trigger_Action_Four)
+        else if (InputManager.Instance.Trigger_Action_Four)
         {
-            Debug.Log("Action_Four");
+            ChangeSpeed(0.75f);
+        }
+        if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up)
+        {
+            PulseManagerHardCoded.Instance.SetPitch(1);
+            SoundManager.Instance.PitchMusik(1);
         }
     }
 
@@ -89,5 +95,11 @@ void Start()
             jumpDelay = MaxJumpDelay;
         }
         
+    }
+
+    void ChangeSpeed(float pitch)
+    {
+        SoundManager.Instance.PitchMusik(pitch);
+        PulseManagerHardCoded.Instance.SetPitch(pitch);
     }
 }

@@ -274,6 +274,12 @@ public class SoundManager : MonoBehaviour {
     #endregion
 
     #region Musik
+
+    public void PitchMusik(float pitch)
+    {
+        BackgroundMusicSource.pitch = pitch;
+    }
+
     /// <summary>
     /// Spielt den gespeichtern Musik Clip ab
     /// </summary>
