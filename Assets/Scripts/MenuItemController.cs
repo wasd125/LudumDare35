@@ -32,6 +32,7 @@ public class MenuItemController : MonoBehaviour {
     void Start () {
         Instance = this;
 
+        if(IsMainMenu)
         SoundManager.Instance.PlayMusik(MusikClip);
 
         Buttons = new List<GameObject>();
@@ -85,6 +86,9 @@ public class MenuItemController : MonoBehaviour {
             // Anschließend fügen wir diesen Button unserer Liste "Buttons" hinzu
             Buttons.Add(currentButton_Go);
         }
+
+        if (IsMainMenu == false)
+            MainCanvas.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
