@@ -85,7 +85,7 @@ public class SaveDataManager : MonoBehaviour {
 
 public static class DataPaths
 {
-    public static string AUDIO_CONFIG_PATH = string.Format(@"{0}/AudioConfig.dat", Application.persistentDataPath);
+    public static string AUDIO_CONFIG_PATH = string.Format("{0}/AudioConfig.dat", Application.persistentDataPath);
 }
 
 [Serializable]

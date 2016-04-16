@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour {
     private float FadingVolume { get; set; }
     private float FadingAmount { get; set; }
 
-    private AudioSource BackgroundMusicSource;
+    public AudioSource BackgroundMusicSource { get; private set; }
 
     private List<AudioSource> AmbienceSources;
     private List<AudioSource> SoundEffectSources;
