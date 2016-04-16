@@ -18,8 +18,6 @@ public class WalkingEnemy : IEnemyBehaviour {
         waitForNextState -= Time.deltaTime;
         if (waitForNextState > 0) return;
 
-        Debug.Log(State);
-
         switch (State)
         {
             case EnumWalkingEnemyState.IdleLeft:

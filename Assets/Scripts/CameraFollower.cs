@@ -26,7 +26,6 @@ public class CameraFollower : MonoBehaviour {
         float width = height * cam.aspect;
 
         minXPos = Border.transform.position.x - Border.GetComponent<BoxCollider2D>().bounds.size.x / 2 + width * 1.5f;
-        Debug.Log(minXPos);
     }
 	
 	// Update is called once per frame
@@ -51,7 +50,7 @@ public class CameraFollower : MonoBehaviour {
             Vector3 goToPosition = new Vector3(targetToFollow.position.x, myCam.transform.position.y, myCam.transform.position.z);
 
 
-            myCam.transform.position = Vector3.MoveTowards(myCam.transform.position, goToPosition, followSpeed * Time.deltaTime);
+            myCam.transform.position = Vector3.MoveTowards(myCam.transform.position, goToPosition, followSpeed *Time.deltaTime);
            
         }
 

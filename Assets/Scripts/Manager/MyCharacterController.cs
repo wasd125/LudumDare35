@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MyCharacterController : MonoBehaviour {
 		
@@ -16,19 +17,28 @@ public class MyCharacterController : MonoBehaviour {
     public const float MaxJumpDelay = 0.3f;
 
     bool isGrounded = false;
+
+    public float energyConsumption = 0;
+
     public Transform GroundCheck1; // Put the prefab of the ground here
     public LayerMask groundLayer; // Insert the layer here.
 
-    public CharacterAttributeController AttributController { get; set; }
+    public CharacterAttributeController AttributeController { get; set; }
+
+    public Image EnergyBar;
+    public HPController HpController;
+
+    public const float MAX_IMMUNE_TIME = 0.5f;
+    public float currentImmuneTime = 0;
 
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<CircleCollider2D>();
-        Speed = 700f;
+        Speed = 600f;
         jumpForce = 15f;
-        //AttributController(Energybar)
+        AttributeController = new CharacterAttributeController(EnergyBar,HpController);
     }
 
 	// Update is called once per frame
@@ -43,6 +53,7 @@ public class MyCharacterController : MonoBehaviour {
     	// Hier prüfen wir ob der InputManager die Steuerung des Characters zu lässt
         if (InputManager.Instance.ControllerState == InputManager.EnumControllerState.ControlCharacter)
         {
+            RegEnergy();
             Move();
             Actions();
         }
@@ -58,7 +69,15 @@ public class MyCharacterController : MonoBehaviour {
     {
         return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.radius) + 0.1f,groundLayer);
     }
-// 
+    // 
+
+    void RegEnergy()
+    {
+        AttributeController.RegEnergy(10 * Time.deltaTime);
+
+        AttributeController.CurrentEnergy -= energyConsumption;
+    }
+
     void Move()
     {
         Vector2 velocity = new Vector2();
@@ -73,6 +92,9 @@ public class MyCharacterController : MonoBehaviour {
     {
         if (jumpDelay > 0)
             jumpDelay -= Time.deltaTime;
+
+        if (currentImmuneTime > 0)
+            currentImmuneTime -= Time.deltaTime;
     }
 
     void Actions()
@@ -94,10 +116,11 @@ public class MyCharacterController : MonoBehaviour {
         {
             ChangeSpeed(0.75f);
         }
-        if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up)
+        if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up  || AttributeController.CurrentEnergy <=0)
         {
             PulseManagerHardCoded.Instance.SetPitch(1);
             SoundManager.Instance.PitchMusik(1);
+            energyConsumption = 0;
         }
     }
 
@@ -114,11 +137,12 @@ public class MyCharacterController : MonoBehaviour {
 
     void ChangeSpeed(float pitch)
     {
-
-        if (AttributController.CurrentEnergy > 0)
+        if (AttributeController.CurrentEnergy > 0)
         {
             SoundManager.Instance.PitchMusik(pitch);
             PulseManagerHardCoded.Instance.SetPitch(pitch);
+
+            energyConsumption = 20 * Time.deltaTime;
         }
     }
 
@@ -126,7 +150,12 @@ public class MyCharacterController : MonoBehaviour {
     {
         if (other.gameObject.tag == "DamageSource")
         {
-            LevelController.Instance.PlayerDied();
+            if (currentImmuneTime > 0) return;
+
+            AttributeController.CurrentHP -= 1;
+            currentImmuneTime = MAX_IMMUNE_TIME;
+            if(AttributeController.CurrentHP <= 0)
+                LevelController.Instance.PlayerDied();
         }
     }
 }
