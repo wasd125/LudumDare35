@@ -50,6 +50,9 @@ public class MyCharacterController : MonoBehaviour {
 
         dieParticleSystem.GetComponent<Renderer>().sortingOrder = 200;
         dead = false;
+
+        PulseManagerHardCoded.Instance.SetPitch(1);
+        SoundManager.Instance.PitchMusik(1);
     }
 
 	// Update is called once per frame
@@ -127,6 +130,10 @@ public class MyCharacterController : MonoBehaviour {
         else if (InputManager.Instance.Trigger_Action_Four)
         {
             ChangeSpeed(0.35f);
+        }
+        else if (PulseManagerHardCoded.Instance.GetPitch() != 1 && ( InputManager.Instance.Action_Three || InputManager.Instance.Action_Four))
+        {
+            energyConsumption = 15 * Time.deltaTime;
         }
         if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up  || AttributeController.CurrentEnergy <=0)
         {
