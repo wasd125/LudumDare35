@@ -31,7 +31,7 @@ public class PulsingObject : MonoBehaviour {
 
     void Pulse()
     {
-        if(Type ==  EnumPulsingObjectType.SwitchType || Type== EnumPulsingObjectType.JustPulse )
+        if((Type ==  EnumPulsingObjectType.SwitchType || Type== EnumPulsingObjectType.JustPulse) && anim != null )
             anim.SetTrigger("Pulse");
 
         if (Type == EnumPulsingObjectType.JustPulse)
