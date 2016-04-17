@@ -78,6 +78,9 @@ public class MenuItemController : MonoBehaviour {
                 case TitleScreenButton.EnumButtonAction.Unpause:
                     buttonText = "Resume";
                     break;
+                case TitleScreenButton.EnumButtonAction.BackToMenu:
+                    buttonText = "Quit";
+                    break;
             }
             currentButton_Script.TextComponent.text = buttonText;
             currentButton_Script.ButtonState = i == 0 ? TitleScreenButton.EnumButtonState.Selected : TitleScreenButton.EnumButtonState.Idle;
@@ -143,6 +146,10 @@ public class MenuItemController : MonoBehaviour {
                 break;
             case TitleScreenButton.EnumButtonAction.Quit:
                 Application.Quit();
+                break;
+            case TitleScreenButton.EnumButtonAction.BackToMenu:
+                LevelController.Instance.UnregisterAllPulsingObjects();               
+                SceneManager.LoadScene(0);
                 break;
             case TitleScreenButton.EnumButtonAction.Unpause:
                 MainCanvas.gameObject.SetActive(false);

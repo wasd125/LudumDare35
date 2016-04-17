@@ -9,7 +9,7 @@ public class TitleScreenButton : MonoBehaviour, IPointerEnterHandler
     [SerializeField]
     public enum EnumButtonState { Idle, Selected }
     
-    public enum EnumButtonAction { Start,Load,Options,Quit,Unpause}
+    public enum EnumButtonAction { Start,Load,Options,Quit,Unpause,BackToMenu}
 
     private EnumButtonState buttonState;
     public EnumButtonState ButtonState

@@ -48,7 +48,7 @@ public class MyCharacterController : MonoBehaviour {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<CircleCollider2D>();
-        Speed = 600f;
+        Speed = 800f;
         jumpForce = 15f;
         AttributeController = new CharacterAttributeController(EnergyBar,HpController);
 
@@ -166,7 +166,7 @@ public class MyCharacterController : MonoBehaviour {
         }
         else if (InputManager.Instance.Trigger_Action_Four)
         {
-            ChangeSpeed(0.35f);
+            ChangeSpeed(0.25f);
         }
         else if (PulseManagerHardCoded.Instance.GetPitch() != 1 && ( InputManager.Instance.Action_Three || InputManager.Instance.Action_Four))
         {
