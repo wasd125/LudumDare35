@@ -50,6 +50,9 @@ public class MyCharacterController : MonoBehaviour {
 
         dieParticleSystem.GetComponent<Renderer>().sortingOrder = 200;
         dead = false;
+
+        PulseManagerHardCoded.Instance.SetPitch(1);
+        SoundManager.Instance.PitchMusik(1);
     }
 
 	// Update is called once per frame
