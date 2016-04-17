@@ -37,6 +37,12 @@ public class MyCharacterController : MonoBehaviour {
 
     public bool dead = false;
 
+    public Animator anim;
+
+    public bool facingRight = true;
+
+    public GameObject Body, Head;
+
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
@@ -61,7 +67,25 @@ public class MyCharacterController : MonoBehaviour {
         if (dead) return;
         HandleInput();
         Delays();
+
+        if (facingRight && rb2d.velocity.x < 0)
+        {
+            Flip();
+        }
+        else if (!facingRight && rb2d.velocity.x > 0)
+        {
+            Flip();
+        }
+        anim.SetFloat("SpeedX" ,Mathf.Abs( rb2d.velocity.x));
+        anim.SetFloat("SpeedY", rb2d.velocity.y);
 	}
+
+    void Flip()
+    {
+        Head.transform.Rotate(0, 180, 0);
+        Body.transform.Rotate(0, 180, 0);
+        facingRight = !facingRight;
+    }
 
     void HandleInput()
     {
