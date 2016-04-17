@@ -54,7 +54,7 @@ public class MyCharacterController : MonoBehaviour {
 
         transform.position = LevelController.Instance.SpawnPosition;
 
-        for (int i = 0; i < dieParticleSystem.Length -1; i++)
+        for (int i = 0; i <= dieParticleSystem.Length -1; i++)
         {
             dieParticleSystem[i].GetComponent<Renderer>().sortingOrder = 200;
         }
@@ -235,7 +235,7 @@ public class MyCharacterController : MonoBehaviour {
     {
         Invoke("IDied", 1.5f);
 
-        for (int i = 0; i < dieParticleSystem.Length - 1; i++)
+        for (int i = 0; i <= dieParticleSystem.Length - 1; i++)
         {
             dieParticleSystem[i].Emit(40);
         }
