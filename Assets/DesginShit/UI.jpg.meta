@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 9d93c3aa113ae0c498ccad302e6d2c27
-timeCreated: 1460891330
+timeCreated: 1460891459
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: UI_0
+    21300002: UI_1
+    21300004: UI_2
+    21300006: UI_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +42,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +53,94 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: UI_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 221
+        width: 500
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 250, y: 21}
+        - {x: 232, y: 35}
+        - {x: 227, y: 37}
+        - {x: -225, y: 37}
+        - {x: -227, y: 36}
+        - {x: -238, y: 30}
+        - {x: -246, y: 21}
+        - {x: -250, y: 18}
+        - {x: -250, y: -25}
+        - {x: -224, y: -37}
+        - {x: 224, y: -37}
+        - {x: 237, y: -31}
+        - {x: 246, y: -21}
+        - {x: 250, y: -16}
+    - name: UI_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 121
+        width: 499
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 249.5, y: 18}
+        - {x: 237.5, y: 34}
+        - {x: 225.5, y: 37}
+        - {x: -223.5, y: 37}
+        - {x: -228.5, y: 36}
+        - {x: -241.5, y: 29}
+        - {x: -249.5, y: 15}
+        - {x: -249.5, y: -19}
+        - {x: -233.5, y: -37}
+        - {x: 227.5, y: -37}
+        - {x: 241.5, y: -31}
+        - {x: 249.5, y: -18}
+    - name: UI_2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 0
+        width: 109
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54.5, y: -10}
+        - {x: -16.5, y: -48}
+        - {x: 7.5, y: -48}
+        - {x: 54.5, y: -19}
+        - {x: 54.5, y: 45}
+        - {x: 53.5, y: 48}
+        - {x: -52.5, y: 48}
+        - {x: -54.5, y: 42}
+    - name: UI_3
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 109
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 48.5, y: 48}
+        - {x: -42.5, y: 48}
+        - {x: -54.5, y: 36}
+        - {x: -54.5, y: 1}
+        - {x: -8.5, y: -48}
+        - {x: 3.5, y: -48}
+        - {x: 41.5, y: -27}
+        - {x: 54.5, y: 0}
+        - {x: 54.5, y: 43}
     outline: []
   spritePackingTag: 
   userData: 
