@@ -90,9 +90,6 @@ public class MyCharacterController : MonoBehaviour {
             anim.SetFloat("SpeedY", rb2d.velocity.y);
         }
         
-
-
-        Debug.Log(rb2d.velocity.y);
 	}
 
     void Flip()

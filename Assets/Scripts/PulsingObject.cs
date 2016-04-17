@@ -21,6 +21,7 @@ public class PulsingObject : MonoBehaviour {
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
         bc2d = GetComponent<BoxCollider2D>();
+        if(LevelController.Instance != null)
         LevelController.Instance.ResgisterPulsingObject(this);
 	}
 
