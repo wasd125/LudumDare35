@@ -131,6 +131,10 @@ public class MyCharacterController : MonoBehaviour {
         {
             ChangeSpeed(0.35f);
         }
+        else if (InputManager.Instance.Action_Three || InputManager.Instance.Action_Four)
+        {
+            energyConsumption = 15 * Time.deltaTime;
+        }
         if (InputManager.Instance.Trigger_Action_Four_Up || InputManager.Instance.Trigger_Action_Three_Up  || AttributeController.CurrentEnergy <=0)
         {
             PulseManagerHardCoded.Instance.SetPitch(1);
