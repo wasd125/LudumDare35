@@ -38,17 +38,17 @@ public class CameraFollower : MonoBehaviour {
 
         if (Mathf.Abs(xOffset) > 0)
         {
-            float followSpeed = 2f;
+            float followSpeed = 5f;
 
 
-            if (Mathf.Abs(xOffset) > 3.5f)
-            {
-                followSpeed = 8f;
-            }
-            else if (Mathf.Abs(xOffset) > 2f)
-            {
-                followSpeed = 4f;
-            }
+            //if (Mathf.Abs(xOffset) > 3.5f)
+            //{
+            //    followSpeed = 8f;
+            //}
+            //else if (Mathf.Abs(xOffset) > 2f)
+            //{
+            //    followSpeed = 4f;
+            //}
 
             Vector3 goToPosition = new Vector3(targetToFollow.position.x, myCam.transform.position.y, myCam.transform.position.z);
 

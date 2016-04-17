@@ -81,7 +81,18 @@ public class MyCharacterController : MonoBehaviour {
             Flip();
         }
         anim.SetFloat("SpeedX" ,Mathf.Abs( rb2d.velocity.x));
-        anim.SetFloat("SpeedY", rb2d.velocity.y);
+        if (GroundCheck())
+        {
+            anim.SetFloat("SpeedY", 0);
+        }
+        else
+        {
+            anim.SetFloat("SpeedY", rb2d.velocity.y);
+        }
+        
+
+
+        Debug.Log(rb2d.velocity.y);
 	}
 
     void Flip()
