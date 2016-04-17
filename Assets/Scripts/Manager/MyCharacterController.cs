@@ -33,7 +33,7 @@ public class MyCharacterController : MonoBehaviour {
 
     public AudioClip takeDamageClip, JumpClip, DieClip;
 
-    public ParticleSystem dieParticleSystem;
+    public ParticleSystem[] dieParticleSystem;
 
     public bool dead = false;
 
@@ -54,7 +54,11 @@ public class MyCharacterController : MonoBehaviour {
 
         transform.position = LevelController.Instance.SpawnPosition;
 
-        dieParticleSystem.GetComponent<Renderer>().sortingOrder = 200;
+        for (int i = 0; i < dieParticleSystem.Length -1; i++)
+        {
+            dieParticleSystem[i].GetComponent<Renderer>().sortingOrder = 200;
+        }
+
         dead = false;
 
         PulseManagerHardCoded.Instance.SetPitch(1);
@@ -230,12 +234,18 @@ public class MyCharacterController : MonoBehaviour {
     void PlayerDies()
     {
         Invoke("IDied", 1.5f);
-        dieParticleSystem.Emit(40);
+
+        for (int i = 0; i < dieParticleSystem.Length - 1; i++)
+        {
+            dieParticleSystem[i].Emit(40);
+        }
         dead = true;
         rb2d.velocity = Vector2.zero;
         rb2d.isKinematic = true;
         rb2d.gravityScale = 0;
         GetComponent<SpriteRenderer>().enabled = false;
+        Body.GetComponent<SpriteRenderer>().enabled = false;
+        Head.GetComponent<SpriteRenderer>().enabled = false;
         SoundManager.Instance.PlaySoundEffect(DieClip, 0.9f, 1.1f);
     }
 
