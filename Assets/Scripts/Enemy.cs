@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public CircleCollider2D cc2d { get; private set; }
     private IEnemyBehaviour myBehaviour;
 
-    public enum EnumEnemyType { JumpingEnemy, WalkingEnemy, RollingEnemy, DashingEnemy, DiggingEnemy }
+    public enum EnumEnemyType { JumpingEnemy, WalkingEnemy, RollingEnemy, DashingEnemy, DiggingEnemy, Elevator }
     public EnumEnemyType EnemyType;
 
     public float jumpForce;
@@ -53,6 +53,9 @@ public class Enemy : MonoBehaviour
             case EnumEnemyType.DashingEnemy:
                 myBehaviour = new DashingEnemyBehaviour();
                 break;
+			case EnumEnemyType.Elevator:
+				myBehaviour = new ElevatingEnemyBehaviour();
+				break;
                 //case EnumEnemyType.DiggingEnemy:
                 //	myBehaviour = new DiggingEnemyBehaviour();
                 //	break;
