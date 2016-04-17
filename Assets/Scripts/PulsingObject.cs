@@ -6,10 +6,10 @@ public class PulsingObject : MonoBehaviour {
     public enum EnumPulsingObjectType { SwitchType,JustPulse,JustSwitch,JustSwitchBG }
     public EnumPulsingObjectType Type;
 
-    public enum EnumPulsingStates { KreisSolid,DreieckSolid,ViereckSolid,KreisUnsoild,DreieckUnsolid,ViereckUnsolid }
+    public enum EnumPulsingStates { KreisSolid,DreieckSolid,ViereckSolid,KreisUnsoild,DreieckUnsolid,ViereckUnsolid,KreisDamageSource,DreieckDamageSource,ViereckDamageSource }
     public EnumPulsingStates[] States;
 
-    public Sprite KreisSprite, DreieckSprite, ViereckSprite;
+    public Sprite KreisSprite, DreieckSprite, ViereckSprite,KreisTransparent,DreieckTransparent,ViereckTransparent,KreisDamage,DreieckDamage,ViereckDamage;
 
     private Animator anim;
     private SpriteRenderer rend;
@@ -31,7 +31,7 @@ public class PulsingObject : MonoBehaviour {
 
     void Pulse()
     {
-        if(Type ==  EnumPulsingObjectType.JustSwitch || Type== EnumPulsingObjectType.JustPulse )
+        if(Type ==  EnumPulsingObjectType.SwitchType || Type== EnumPulsingObjectType.JustPulse )
             anim.SetTrigger("Pulse");
 
         if (Type == EnumPulsingObjectType.JustPulse)
@@ -52,8 +52,6 @@ public class PulsingObject : MonoBehaviour {
         {
             case EnumPulsingStates.DreieckSolid:
                 rend.sprite = DreieckSprite;
-                if (Type != EnumPulsingObjectType.JustSwitchBG)
-                    gameObject.tag = "DamageSource";
                 break;
             case EnumPulsingStates.KreisSolid:
                 rend.sprite = KreisSprite;                
@@ -62,19 +60,31 @@ public class PulsingObject : MonoBehaviour {
                 rend.sprite = ViereckSprite;
                 break;
             case EnumPulsingStates.DreieckUnsolid:
-                rend.sprite = DreieckSprite;
+                rend.sprite = DreieckTransparent;
                 rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 0.5f);
                 bc2d.enabled = false;
                 break;
             case EnumPulsingStates.ViereckUnsolid:
-                rend.sprite = ViereckSprite;
+                rend.sprite = ViereckTransparent;
                 rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 0.5f);
                 bc2d.enabled = false;
                 break;
             case EnumPulsingStates.KreisUnsoild:
-                rend.sprite = KreisSprite;
+                rend.sprite = KreisTransparent;
                 rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 0.5f);
                 bc2d.enabled = false;
+                break;
+            case EnumPulsingStates.DreieckDamageSource:
+                rend.sprite = DreieckDamage;
+                tag = "DamageSource";
+                break;
+            case EnumPulsingStates.KreisDamageSource:
+                rend.sprite = KreisDamage;
+                tag = "DamageSource";
+                break;
+            case EnumPulsingStates.ViereckDamageSource:
+                rend.sprite = ViereckDamage;
+                tag = "DamageSource";
                 break;
         }
     }

@@ -31,7 +31,11 @@ public class MyCharacterController : MonoBehaviour {
     public const float MAX_IMMUNE_TIME = 0.5f;
     public float currentImmuneTime = 0;
 
+    public AudioClip takeDamageClip, JumpClip, DieClip;
 
+    public ParticleSystem dieParticleSystem;
+
+    public bool dead = false;
 
     void Start()
     {
@@ -43,11 +47,15 @@ public class MyCharacterController : MonoBehaviour {
         AttributeController = new CharacterAttributeController(EnergyBar,HpController);
 
         transform.position = LevelController.Instance.SpawnPosition;
+
+        dieParticleSystem.GetComponent<Renderer>().sortingOrder = 200;
+        dead = false;
     }
 
 	// Update is called once per frame
 	void Update ()
     {
+        if (dead) return;
         HandleInput();
         Delays();
 	}
@@ -135,6 +143,8 @@ public class MyCharacterController : MonoBehaviour {
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             jumpDelay = MaxJumpDelay;
+
+            SoundManager.Instance.PlaySoundEffect(JumpClip, 0.9f, 1.1f);
         }
         
     }
@@ -152,14 +162,54 @@ public class MyCharacterController : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag == "DamageSource")
+        if (other.gameObject.tag == "DeathSource" && dead == false)
+        {
+            AttributeController.CurrentHP = 0;
+            PlayerDies();
+        }
+
+        if (other.gameObject.tag == "DamageSource" && dead== false)
         {
             if (currentImmuneTime > 0) return;
 
+            var heading = transform.position - other.transform.position;
+            var distance = heading.magnitude;
+            var direction = heading / distance;
+
+            
+
+            rb2d.velocity = direction * 15;
+
+
+            rb2d.AddForce(new Vector2(direction.x * 1000, 0));
+
             AttributeController.CurrentHP -= 1;
             currentImmuneTime = MAX_IMMUNE_TIME;
-            if(AttributeController.CurrentHP <= 0)
-                LevelController.Instance.PlayerDied();
+            if (AttributeController.CurrentHP <= 0)
+            {
+                PlayerDies();
+            }
+            else
+            {
+                SoundManager.Instance.PlaySoundEffect(takeDamageClip, 0.9f, 1.1f);
+            }
         }
+    }
+
+    void PlayerDies()
+    {
+        Invoke("IDied", 1.5f);
+        dieParticleSystem.Emit(40);
+        dead = true;
+        rb2d.velocity = Vector2.zero;
+        rb2d.isKinematic = true;
+        rb2d.gravityScale = 0;
+        GetComponent<SpriteRenderer>().enabled = false;
+        SoundManager.Instance.PlaySoundEffect(DieClip, 0.9f, 1.1f);
+    }
+
+    void IDied()
+    {
+        LevelController.Instance.PlayerDied();
     }
 }
