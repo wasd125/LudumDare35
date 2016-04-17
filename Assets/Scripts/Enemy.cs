@@ -64,6 +64,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InputManager.Instance.ControllerState == InputManager.EnumControllerState.Menu) return;
+
         myBehaviour.DoUpdate();
     }
 }

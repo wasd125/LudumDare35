@@ -69,6 +69,7 @@ public class MyCharacterController : MonoBehaviour {
 	void Update ()
     {
         if (dead) return;
+
         HandleInput();
         Delays();
 
