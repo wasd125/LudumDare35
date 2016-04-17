@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PulsingObject : MonoBehaviour {
 
-    public enum EnumPulsingObjectType { SwitchType,JustPulse,JustSwitch }
+    public enum EnumPulsingObjectType { SwitchType,JustPulse,JustSwitch,JustSwitchBG }
     public EnumPulsingObjectType Type;
 
     public enum EnumPulsingStates { KreisSolid,DreieckSolid,ViereckSolid,KreisUnsoild,DreieckUnsolid,ViereckUnsolid }
@@ -31,7 +31,7 @@ public class PulsingObject : MonoBehaviour {
 
     void Pulse()
     {
-        if(Type !=  EnumPulsingObjectType.JustSwitch)
+        if(Type ==  EnumPulsingObjectType.JustSwitch || Type== EnumPulsingObjectType.JustPulse )
             anim.SetTrigger("Pulse");
 
         if (Type == EnumPulsingObjectType.JustPulse)
@@ -44,13 +44,16 @@ public class PulsingObject : MonoBehaviour {
 
         gameObject.tag = "Obstacle";
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 1f);
+
+        if(bc2d != null)
         bc2d.enabled = true;
 
         switch (States[currentStateIndex])
         {
             case EnumPulsingStates.DreieckSolid:
                 rend.sprite = DreieckSprite;
-                gameObject.tag = "DamageSource";
+                if (Type != EnumPulsingObjectType.JustSwitchBG)
+                    gameObject.tag = "DamageSource";
                 break;
             case EnumPulsingStates.KreisSolid:
                 rend.sprite = KreisSprite;                

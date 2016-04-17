@@ -31,6 +31,8 @@ public class MyCharacterController : MonoBehaviour {
     public const float MAX_IMMUNE_TIME = 0.5f;
     public float currentImmuneTime = 0;
 
+
+
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
@@ -39,6 +41,8 @@ public class MyCharacterController : MonoBehaviour {
         Speed = 600f;
         jumpForce = 15f;
         AttributeController = new CharacterAttributeController(EnergyBar,HpController);
+
+        transform.position = LevelController.Instance.SpawnPosition;
     }
 
 	// Update is called once per frame

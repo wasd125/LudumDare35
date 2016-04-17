@@ -28,6 +28,7 @@ public class PulseManagerHardCoded : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+        currentPulseTimer = BASE_PULSE_TIMER;
     }
 
     public void SetPitch(float pitch)

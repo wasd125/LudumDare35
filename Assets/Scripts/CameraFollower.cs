@@ -26,10 +26,13 @@ public class CameraFollower : MonoBehaviour {
         float width = height * cam.aspect;
 
         minXPos = Border.transform.position.x - Border.GetComponent<BoxCollider2D>().bounds.size.x / 2 + width * 1.5f;
+        cam.transform.position = new Vector3(LevelController.Instance.SpawnPosition.x, cam.transform.position.y, -10);
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (targetToFollow == null) return;
 
         xOffset = myCam.transform.position.x - targetToFollow.position.x;
 

@@ -19,6 +19,8 @@ public class CharacterAttributeController
 
             if (currentHP >= MAX_HP)
                 currentHP = MAX_HP;
+
+            if(HpController != null)
             HpController.SetHP(currentHP);
         }
     }
@@ -34,6 +36,7 @@ public class CharacterAttributeController
         {
             currentEnergy = value;
 
+            if(EnegryBar!= null)
             EnegryBar.fillAmount = currentEnergy / MAX_ENERGY;
         }
     }

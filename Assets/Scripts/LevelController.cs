@@ -2,12 +2,23 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour {
 
     public static LevelController Instance;
     public AudioClip clip;
     public List<PulsingObject> PulseObjects { get; private set; }
+
+    public Vector3 SpawnPosition;
+    public GameObject playerPrefap;
+    public GameObject cameraFollowerPrefap;
+    public GameObject cameraBlocker;
+
+    public HPController HpBar;
+    public Image EnergyBar;
+
+    public Transform StartPos;
 
     void Awake()
     {
@@ -27,6 +38,7 @@ public class LevelController : MonoBehaviour {
         }
 
         SoundManager.Instance.PlayMusik(clip);
+        SpawnPosition = new Vector3(StartPos.transform.position.x, StartPos.transform.position.y, StartPos.transform.position.z);
     }
 
     public void ResgisterPulsingObject(PulsingObject obj)
