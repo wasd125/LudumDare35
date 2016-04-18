@@ -43,12 +43,14 @@ public class MyCharacterController : MonoBehaviour {
 
     public GameObject Body, Head;
 
+    public float xMovement { get; private set; }
+
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<CircleCollider2D>();
-        Speed = 800f;
+        Speed = 280f;
         jumpForce = 15f;
         AttributeController = new CharacterAttributeController(EnergyBar,HpController);
 
@@ -63,6 +65,18 @@ public class MyCharacterController : MonoBehaviour {
 
         PulseManagerHardCoded.Instance.SetPitch(1);
         SoundManager.Instance.PitchMusik(1);
+    }
+
+    void FixedUpdate()
+    {
+        if (dead == false)
+        {
+            rb2d.velocity = new Vector2(xMovement * Time.deltaTime, rb2d.velocity.y);
+        }
+        else
+        {
+            rb2d.velocity =  Vector2.zero;
+        }
     }
 
 	// Update is called once per frame
@@ -112,14 +126,27 @@ public class MyCharacterController : MonoBehaviour {
         // Wenn die Steuerung nicht zugelassen ist aber wir dennoch Velocity haben setzen wir diese auf Vector2.Zero
         else if(rb2d.velocity.x != 0)
         {
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            xMovement = 0;
         }
     }
 
 
     bool GroundCheck()
     {
-        return Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.radius) + 0.1f,groundLayer);
+        if (Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+            return true;
+
+        Vector3 leftCastPos = new Vector3(transform.position.x - 0.3f, transform.position.y, transform.position.z);
+
+        if (Physics2D.Raycast(leftCastPos, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+            return true;
+
+        Vector3 rightCastPos = new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z);
+
+        if (Physics2D.Raycast(rightCastPos, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+            return true;
+
+        return false;
     }
     // 
 
@@ -134,10 +161,7 @@ public class MyCharacterController : MonoBehaviour {
     {
         Vector2 velocity = new Vector2();
 		
-        velocity.x = InputManager.Instance.Horizontal * Speed * Time.deltaTime;
-        velocity.y = rb2d.velocity.y;
-
-        rb2d.velocity = velocity;
+        xMovement = InputManager.Instance.Horizontal * Speed;
     }
 
     void Delays()

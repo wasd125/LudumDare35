@@ -5,10 +5,13 @@ public class CheckPoint : MonoBehaviour {
 
     bool check = false;
 
+    public bool endFlag = false;
+
     void  OnTriggerEnter2D(Collider2D other)
     {
 
         if (check) return;
+
 
         if (other.tag == "Player")
         {
@@ -17,6 +20,11 @@ public class CheckPoint : MonoBehaviour {
 
             check = true;
             GetComponent<SpriteRenderer>().color = Color.white;
+
+            if (endFlag)
+            {
+                LevelController.Instance.LevelCompleted();
+            }
         }
     }
 }

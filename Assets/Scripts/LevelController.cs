@@ -49,7 +49,7 @@ public class LevelController : MonoBehaviour {
     public void LevelCompleted()
     {
         UnregisterAllPulsingObjects();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void PlayerDied()
@@ -61,7 +61,7 @@ public class LevelController : MonoBehaviour {
 
     public void UnregisterAllPulsingObjects()
     {
-        for (int i = PulseObjects.Count -1 ; i >= 0; i--)
+        for (int i = PulseObjects.Count - 1; i >= 0; i--)
         {
             UnregisterPulsingObject(PulseObjects[i]);
         }
