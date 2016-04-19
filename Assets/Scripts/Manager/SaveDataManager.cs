@@ -46,17 +46,21 @@ public class SaveDataManager : MonoBehaviour {
     /// </summary>
     public void LoadSoundData()
     {
-        if (File.Exists(DataPaths.AUDIO_CONFIG_PATH))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(DataPaths.AUDIO_CONFIG_PATH, FileMode.Open);
-            AudioConfigData = (MyAudioConfigData)bf.Deserialize(file);
-            file.Close();
-        }
-        else
-        {
-            AudioConfigData = new MyAudioConfigData(1f, 1f, 1f, 1f);
-        }
+        // Commented Out for the webversion
+
+        //if (File.Exists(DataPaths.AUDIO_CONFIG_PATH))
+        //{
+        //    BinaryFormatter bf = new BinaryFormatter();
+        //    FileStream file = File.Open(DataPaths.AUDIO_CONFIG_PATH, FileMode.Open);
+        //    AudioConfigData = (MyAudioConfigData)bf.Deserialize(file);
+        //    file.Close();
+        //}
+        //else
+        //{
+        //    AudioConfigData = new MyAudioConfigData(1f, 1f, 1f, 1f);
+        //}
+
+        AudioConfigData = new MyAudioConfigData(1f, 1f, 1f, 1f);
 
         SoundManager.Instance.MasterVolume = AudioConfigData.MasterVolume;
         SoundManager.Instance.MusikVolume = AudioConfigData.MusikVolume;

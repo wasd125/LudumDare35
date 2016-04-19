@@ -7,7 +7,7 @@ public class MyCharacterController : MonoBehaviour {
 	[HideInInspector]
     public Rigidbody2D rb2d { get; private set; }
     
-    public CircleCollider2D bc2d { get; private set; }
+    public BoxCollider2D bc2d { get; private set; }
 
     public bool grounded { get; private set; }
 
@@ -45,11 +45,13 @@ public class MyCharacterController : MonoBehaviour {
 
     public float xMovement { get; private set; }
 
+    public Transform LeftGroundCheckPos, RightGroundCheckpos;
+
     void Start()
     {
         InputManager.Instance.ControllerState = InputManager.EnumControllerState.ControlCharacter;
         rb2d = GetComponent<Rigidbody2D>();
-        bc2d = GetComponent<CircleCollider2D>();
+        bc2d = GetComponent<BoxCollider2D>();
         Speed = 280f;
         jumpForce = 15f;
         AttributeController = new CharacterAttributeController(EnergyBar,HpController);
@@ -133,17 +135,17 @@ public class MyCharacterController : MonoBehaviour {
 
     bool GroundCheck()
     {
-        if (Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+        if (Physics2D.Raycast(transform.position, -Vector3.up, (bc2d.size.y/2) + 0.1f, groundLayer))
             return true;
 
-        Vector3 leftCastPos = new Vector3(transform.position.x - 0.3f, transform.position.y, transform.position.z);
+        //Vector3 leftCastPos = new Vector3(transform.position.x - 0.3f, transform.position.y, transform.position.z);
 
-        if (Physics2D.Raycast(leftCastPos, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+        if (Physics2D.Raycast(LeftGroundCheckPos.position, -Vector3.up, (bc2d.size.y/2) + 0.1f, groundLayer))
             return true;
 
-        Vector3 rightCastPos = new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z);
+        //Vector3 rightCastPos = new Vector3(RightGroundCheckpos.position.x + 0.3f, transform.position.y, transform.position.z);
 
-        if (Physics2D.Raycast(rightCastPos, -Vector3.up, (bc2d.radius) + 0.1f, groundLayer))
+        if (Physics2D.Raycast(RightGroundCheckpos.position, -Vector3.up, (bc2d.size.y/2) + 0.1f, groundLayer))
             return true;
 
         return false;
